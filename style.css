@@ -1,4 +1,5 @@
 .container-card {
+    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,10 +9,18 @@
 
 .card {
     width: 30rem;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .card-body {
     justify-content: space-between;
     display: flex;
     align-items: center;
+}
+
+nav {
+    position: absolute !important;
+    background-color: lightslategray;
+    width: 100%;
 }
