@@ -11,28 +11,28 @@
     <script src="script.js"></script>
 </head>
 
-<body>
-    <nav class="navbar bg-body-tertiary">
+<body onload="init()">
+    <!-- <nav class="navbar bg-body-tertiary">
         <div class="container-fluid">
             <span class="navbar-brand mb-0 h1">Quizapp</span>
         </div>
-    </nav>
+    </nav> -->
 
     <div class="container-card">
         <div class="card">
             <img src="img/idea.jpg" class="card-img-top">
             <div class="card-body">
-                <h5 class="card-title">Seit wann gibt es Menschen (Homo sapiens)?</h5>
+                <h5 class="card-title" id="questiontext"></h5>
             </div>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">30.000 Jahren</li>
-                <li class="list-group-item">300.000 Jahren</li>
-                <li class="list-group-item">3.000 Jahren</li>
-                <li class="list-group-item">3.000.000 Jahren</li>
+                <li class="list-group-item answer-list" id="answer1" onclick="answer('answer1')"></li>
+                <li class="list-group-item answer-list" id="answer2" onclick="answer('answer2')"></li>
+                <li class="list-group-item answer-list" id="answer3" onclick="answer('answer3')"></li>
+                <li class="list-group-item answer-list" id="answer4" onclick="answer('answer4')"></li>
             </ul>
             <div class="card-body">
-                <span><b>1</b> von <b>5</b> Fragen</span>
-                <button type="button" class="btn btn-primary">Nächste Frage</button>
+                <span><b>1</b> von <b id="questionLength"></b> Fragen</span>
+                <button type="button" class="btn btn-primary" id="nextQuestion" disabled>Nächste Frage</button>
             </div>
         </div>
     </div>

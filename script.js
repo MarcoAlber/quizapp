@@ -1,6 +1,6 @@
 let questions = [
     {
-        "question": "Seit wann gibt es Menschen (Homo sapiens)?",
+        "questiontext": "Seit wann gibt es Menschen (Homo sapiens)?",
         "answer1": "30.000 Jahren",
         "answer2": "300.000 Jahren",
         "answer3": "3.000 Jahren",
@@ -8,7 +8,7 @@ let questions = [
         "rightAnswer": 2
     },
     {
-        "question": "Welcher ist der zweitgrößte Planet unseres Sonnensystems?",
+        "questiontext": "Welcher ist der zweitgrößte Planet unseres Sonnensystems?",
         "answer1": "Venus",
         "answer2": "Neptun",
         "answer3": "Jupiter",
@@ -16,7 +16,7 @@ let questions = [
         "rightAnswer": 4
     },
     {
-        "question": "Wie oft passt Deutschland flächenmäßig in Russland?",
+        "questiontext": "Wie oft passt Deutschland flächenmäßig in Russland?",
         "answer1": "15",
         "answer2": "33",
         "answer3": "25",
@@ -24,7 +24,7 @@ let questions = [
         "rightAnswer": 4
     },
     {
-        "question": "Haben Rosen Stacheln oder Dornen?",
+        "questiontext": "Haben Rosen Stacheln oder Dornen?",
         "answer1": "Stacheln",
         "answer2": "Dornen",
         "answer3": "Ist beides das Gleiche",
@@ -32,7 +32,7 @@ let questions = [
         "rightAnswer": 1
     },
     {
-        "question": "Wie groß war der größte Mensch der Welt?",
+        "questiontext": "Wie groß war der größte Mensch der Welt?",
         "answer1": "3,19m",
         "answer2": "2,44m",
         "answer3": "2,72m",
@@ -40,7 +40,7 @@ let questions = [
         "rightAnswer": 3
     },
     {
-        "question": "Wie viele Schritte brauchte Usain Bolt bei seinem Weltrekord über 100m?",
+        "questiontext": "Wie viele Schritte brauchte Usain Bolt bei seinem Weltrekord über 100m?",
         "answer1": "41",
         "answer2": "48",
         "answer3": "56",
@@ -48,3 +48,36 @@ let questions = [
         "rightAnswer": 1
     }
 ];
+
+let currentQuestion = 0;
+
+function init() {
+    document.getElementById('questionLength').innerHTML = questions.length;
+
+    showQuestion();
+}
+
+function showQuestion() {
+    let question = questions[currentQuestion];
+
+    document.getElementById('questiontext').innerHTML = question["questiontext"];
+    document.getElementById('answer1').innerHTML = question["answer1"];
+    document.getElementById('answer2').innerHTML = question["answer2"];
+    document.getElementById('answer3').innerHTML = question["answer3"];
+    document.getElementById('answer4').innerHTML = question["answer4"];
+}
+
+function answer(selection) {
+    let question = questions[currentQuestion];
+    let selectedQuestionNumber = selection.slice(-1);
+    let idOfRightAnswer = `answer${question["rightAnswer"]}`;
+
+    if (question["rightAnswer"] == selectedQuestionNumber) {
+        document.getElementById(selection).classList.add('bg-success');
+    }
+    else {
+        document.getElementById(selection).classList.add('bg-danger');
+        document.getElementById(idOfRightAnswer).classList.add('bg-success');
+    }
+    document.getElementById('nextQuestion').disabled = false;
+}
