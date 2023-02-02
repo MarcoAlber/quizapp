@@ -31,8 +31,8 @@
                 <li class="list-group-item answer-list" id="answer4" onclick="answer('answer4')"></li>
             </ul>
             <div class="card-body">
-                <span><b>1</b> von <b id="questionLength"></b> Fragen</span>
-                <button type="button" class="btn btn-primary" id="nextQuestion" disabled>Nächste Frage</button>
+                <span><b id="currentCard"></b> von <b id="questionLength"></b> Fragen</span>
+                <button onclick="nextQuestion()" type="button" class="btn btn-primary" id="nextQuestion" disabled>Nächste Frage</button>
             </div>
         </div>
     </div>
