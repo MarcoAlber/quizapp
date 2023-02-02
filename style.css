@@ -3,7 +3,7 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #27355C
+    background-color: #27355C;
 }
 
 .card {
@@ -16,6 +16,12 @@
     justify-content: space-between;
     display: flex;
     align-items: center;
+}
+
+.logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
 }
 
 nav {
@@ -32,4 +38,55 @@ nav {
 .bg-success,
 .bg-danger {
     color: white !important;
+}
+
+.scoreContainer {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #27355C;
+}
+
+.scoreContent {
+    width: 50%;
+    background-color: rgba(211, 211, 211, 0.39);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 25px;
+}
+
+.scoreImg {
+    width: 250px;
+    height: auto;
+    object-fit: cover;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.scoreText {
+    color: white;
+    margin-bottom: 20px;
+}
+
+.scoreResultContent {
+    margin-bottom: 40px;
+    color: white;
+}
+
+.scoreYourResult {
+    margin-right: 15px;
+}
+
+.scoreButton {
+    margin-bottom: 20px;
+}
+
+.trophy {
+    position: absolute;
+    top: 10vh;
+    right: 0;
 }

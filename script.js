@@ -57,6 +57,24 @@ function init() {
 }
 
 function showQuestion() {
+if (currentQuestion >= questions.length) {
+    document.getElementById('questionContent').innerHTML = `<div class="scoreContainer">
+    <div class="scoreContent">
+        <div> 
+            <img class="scoreImg" src="img/logo.png" alt="Logo">
+        </div>
+        <span class="scoreText">Das geht aber besser!</span>
+        <div class="scoreResultContent"><span class="scoreYourResult">Dein Ergebnis:</span><span class="scoreResult">10/10</span></div>
+        <div class="scoreButton"><button type="button" class="btn btn-primary">Nochmal spielen</button></div>
+        <div>
+            <img class="trophy" src="img/tropy.png" alt="Trophäe">
+        </div>
+    </div>
+</div>`;
+
+}
+else {
+
     let question = questions[currentQuestion];
 
     document.getElementById('currentCard').innerHTML = currentQuestion + 1;
@@ -66,6 +84,7 @@ function showQuestion() {
     document.getElementById('answer2').innerHTML = question["answer2"];
     document.getElementById('answer3').innerHTML = question["answer3"];
     document.getElementById('answer4').innerHTML = question["answer4"];
+}
 }
 
 function answer(selection) {
