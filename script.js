@@ -50,6 +50,10 @@ let questions = [
 ];
 
 let currentQuestion = 0;
+let rightAnswers = 0;
+let audioSuccess = new Audio('audio/success.mp3');
+let audioFail = new Audio('audio/fail.mp3');
+
 
 function init() {
     document.getElementById('questionLength').innerHTML = questions.length;
@@ -57,34 +61,61 @@ function init() {
 }
 
 function showQuestion() {
-if (currentQuestion >= questions.length) {
-    document.getElementById('questionContent').innerHTML = `<div class="scoreContainer">
-    <div class="scoreContent">
-        <div> 
-            <img class="scoreImg" src="img/logo.png" alt="Logo">
-        </div>
-        <span class="scoreText">Das geht aber besser!</span>
-        <div class="scoreResultContent"><span class="scoreYourResult">Dein Ergebnis:</span><span class="scoreResult">10/10</span></div>
-        <div class="scoreButton"><button type="button" class="btn btn-primary">Nochmal spielen</button></div>
-        <div>
-            <img class="trophy" src="img/tropy.png" alt="Trophäe">
-        </div>
-    </div>
-</div>`;
-
+    if (gameOver()) {
+        showScore();
+    }
+    else {
+        updateProgessBar();
+        showNextQuestion();
+    }
 }
-else {
 
+function gameOver() {
+    return currentQuestion >= questions.length;
+}
+
+function showScore() {
+    document.getElementById('questionContent').style = 'display: none';
+    document.getElementById('questionContentScore').style = ''
+    document.getElementById('questionContentScore').innerHTML = showScoreTemplate(rightAnswers);
+}
+
+function showScoreTemplate(rightAnswers) {
+    return `
+    <div class="scoreContainer">
+        <div class="scoreContent">
+            <div>
+                <img class="scoreImg" src="img/logo.png" alt="Logo">
+            </div>
+            <span class="scoreText">Das geht aber besser!</span>
+            <div class="scoreResultContent"><span class="scoreYourResult">Richtige Antworten:</span><span
+                    class="scoreResult"><b>${rightAnswers}</b> von <b>${questions.length}</b></span></div>
+            <div class="scoreButton"><button onclick="restart()" type="button" class="btn btn-primary">Nochmal
+                    spielen</button></div>
+            <div>
+                <img class="trophy" src="img/tropy.png" alt="Trophäe">
+            </div>
+        </div>
+    </div>`;
+}
+
+function showNextQuestion() {
     let question = questions[currentQuestion];
 
     document.getElementById('currentCard').innerHTML = currentQuestion + 1;
-
     document.getElementById('questiontext').innerHTML = question["questiontext"];
     document.getElementById('answer1').innerHTML = question["answer1"];
     document.getElementById('answer2').innerHTML = question["answer2"];
     document.getElementById('answer3').innerHTML = question["answer3"];
     document.getElementById('answer4').innerHTML = question["answer4"];
 }
+
+function updateProgessBar() {
+    let percent = currentQuestion / questions.length;
+
+    percent = Math.round(percent * 100);
+    document.getElementById('progressBar').innerHTML = `${percent} %`;
+    document.getElementById('progressBar').style = `width: ${percent}%`;
 }
 
 function answer(selection) {
@@ -92,18 +123,37 @@ function answer(selection) {
     let selectedQuestionNumber = selection.slice(-1);
     let idOfRightAnswer = `answer${question["rightAnswer"]}`;
 
-    if (question["rightAnswer"] == selectedQuestionNumber) {
+    if (rightAnswerSelected(selectedQuestionNumber, question)) {
         document.getElementById(selection).classList.add('bg-success');
+        audioSuccess.play();
+        rightAnswers++;
     }
     else {
         document.getElementById(selection).classList.add('bg-danger');
         document.getElementById(idOfRightAnswer).classList.add('bg-success');
+        audioFail.play();
     }
+    changeButtonFunctionAfterAnswer();
+}
+
+function rightAnswerSelected(selectedQuestionNumber, question) {
+    return question["rightAnswer"] == selectedQuestionNumber;
+}
+
+function changeButtonFunctionAfterAnswer() {
     document.getElementById('nextQuestion').disabled = false;
+    document.getElementById('answer1').onclick = "";
+    document.getElementById('answer2').onclick = "";
+    document.getElementById('answer3').onclick = "";
+    document.getElementById('answer4').onclick = "";
 }
 
 function nextQuestion() {
     currentQuestion++;
+    document.getElementById('answer1').onclick = function () { answer('answer1') };
+    document.getElementById('answer2').onclick = function () { answer('answer2') };
+    document.getElementById('answer3').onclick = function () { answer('answer3') };
+    document.getElementById('answer4').onclick = function () { answer('answer4') };
     document.getElementById('nextQuestion').disabled = true;
     resetButtons();
     showQuestion();
@@ -118,4 +168,12 @@ function resetButtons() {
     document.getElementById('answer3').classList.remove('bg-danger');
     document.getElementById('answer4').classList.remove('bg-success');
     document.getElementById('answer4').classList.remove('bg-danger');
+}
+
+function restart() {
+    currentQuestion = 0;
+    rightAnswers = 0;
+    document.getElementById('questionContent').style = '';
+    document.getElementById('questionContentScore').style = 'display:none';
+    init();
 }

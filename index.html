@@ -7,30 +7,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QuizApp</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <script src="script.js"></script>
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
 </head>
 
 <body onload="init()">
 
-    <!-- <div class="scoreContainer">
-        <div class="scoreContent">
-            <div> 
-                <img class="scoreImg" src="img/logo.png" alt="Logo">
-            </div>
-            <span class="scoreText">Das geht aber besser!</span>
-            <div class="scoreResultContent"><span class="scoreYourResult">Dein Ergebnis:</span><span class="scoreResult">10/10</span></div>
-            <div class="scoreButton"><button type="button" class="btn btn-primary">Nochmal spielen</button></div>
-            <div>
-                <img class="trophy" src="img/tropy.png" alt="Trophäe">
-            </div>
-        </div>
-    </div> -->
-
     <div id="questionContent" class="container-card">
         <div class="card">
             <img src="img/idea.jpg" class="card-img-top">
+            <div class="progress">
+                <div id="progressBar" class="progress-bar" role="progressbar"></div>
+            </div>
             <div class="card-body">
                 <h5 class="card-title" id="questiontext"></h5>
             </div>
@@ -42,9 +31,13 @@
             </ul>
             <div class="card-body">
                 <span><b id="currentCard"></b> von <b id="questionLength"></b> Fragen</span>
-                <button onclick="nextQuestion()" type="button" class="btn btn-primary" id="nextQuestion" disabled>Nächste Frage</button>
+                <button onclick="nextQuestion()" type="button" class="btn btn-primary" id="nextQuestion"
+                    disabled>Nächste Frage</button>
             </div>
         </div>
+    </div>
+
+    <div id="questionContentScore">
     </div>
 </body>
 
