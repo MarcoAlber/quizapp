@@ -118,6 +118,11 @@ function showNextQuestion() {
     document.getElementById('answer2').innerHTML = question["answer2"];
     document.getElementById('answer3').innerHTML = question["answer3"];
     document.getElementById('answer4').innerHTML = question["answer4"];
+
+    if (currentQuestion == questions.length - 1) {
+        document.getElementById('nextQuestion').innerHTML = `Ergebnis anzeigen`
+    }
+    else { }
 }
 
 function updateProgessBar() {
