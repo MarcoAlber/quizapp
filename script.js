@@ -122,7 +122,7 @@ function showNextQuestion() {
     if (currentQuestion == questions.length - 1) {
         document.getElementById('nextQuestion').innerHTML = `Ergebnis anzeigen`
     }
-    else { }
+    else { document.getElementById('nextQuestion').innerHTML = `Nächste Frage` }
 }
 
 function updateProgessBar() {
