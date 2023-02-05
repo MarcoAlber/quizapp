@@ -78,6 +78,16 @@ function showScore() {
     document.getElementById('questionContent').style = 'display: none';
     document.getElementById('questionContentScore').style = ''
     document.getElementById('questionContentScore').innerHTML = showScoreTemplate(rightAnswers);
+
+    if (rightAnswers <= 2) {
+        document.getElementById('scoreText').innerHTML = `Das war aber nicht gut!`;
+    }
+    else if (rightAnswers <= 5) {
+        document.getElementById('scoreText').innerHTML = `Da ist noch Luft nach oben!`;
+    }
+    else {
+        document.getElementById('scoreText').innerHTML = `Toll, du hast alle Fragen richtig beantwortet!`;
+    }
 }
 
 function showScoreTemplate(rightAnswers) {
@@ -87,7 +97,7 @@ function showScoreTemplate(rightAnswers) {
             <div>
                 <img class="scoreImg" src="img/logo.png" alt="Logo">
             </div>
-            <span class="scoreText">Das geht aber besser!</span>
+            <span id="scoreText" class="scoreText"></span>
             <div class="scoreResultContent"><span class="scoreYourResult">Richtige Antworten:</span><span
                     class="scoreResult"><b>${rightAnswers}</b> von <b>${questions.length}</b></span></div>
             <div class="scoreButton"><button onclick="restart()" type="button" class="btn btn-primary">Nochmal
